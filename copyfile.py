@@ -1,7 +1,7 @@
 #coding=utf-8
 from multiprocessing import Pool,Manager
 import os
-def cpfile(name,newfilename,oldfilename):
+def cpfile(name,newfilename,oldfilename，queue):
 	#完成对文件的拷贝
 	print(name)
 	fr = open(oldfilename+"/"+name)
@@ -12,7 +12,7 @@ def cpfile(name,newfilename,oldfilename):
 
 	fr.close()
 	fw.close()
-	q.put(name)
+	queue.put(name)
 
 def main():
 	#0-获取要copy的文件夹的名字
@@ -27,7 +27,7 @@ def main():
 	queue = Manager.Queue()
 
 	for name in filenames:
-		pool.apply_async(cpfile,(name,newfilename,oldfilename，queue))
+		pool.apply_async(cpfile,(name,newfilename,oldfilename,queue))
 	num = 0
 	allnums = len(filenames)
 	while True:
