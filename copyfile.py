@@ -35,8 +35,7 @@ def main():
 		num+=1
 		copyRate = num/allnums
 		print("\rcopy的进度是：%.2f%%"%(copyRate*100),end='')
-	pool.close()
-	pool.join()
+		
 if __name__ == "__main__":
 	main()
 print('ws')
